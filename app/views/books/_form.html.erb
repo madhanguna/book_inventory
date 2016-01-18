@@ -1,0 +1,62 @@
+
+<h1>Register Books </h1>
+
+
+
+<%= form_for @book do |f| %>
+
+<% if @book.errors.any? %>
+  <div id="error">
+    <h2>
+      <%= pluralize(@book.errors.count, "error") %>Book cannot be added to Inventory
+    </h2>
+    <ul>
+      <% @book.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+	<p>
+		<%= f.label :Title %>
+		<%= f.text_field :title %><br/>
+	</p>
+
+	<p>
+		<%= f.label :price %>
+		<%= f.text_field :price %><br/>
+	</p>
+
+
+	<p>
+		<%= f.label :isbn %>
+		<%= f.text_field :isbn %><br/>
+	</p>
+
+	<p>
+		<%= f.label :Available %>
+		<%= f.radio_button :available, 'true' ,:checked => true %> Yes
+    	<%= f.radio_button :available, 'false' %> No
+	</p>
+
+	<p>
+		<%= f.label :AuthorName %>
+		<%= f.collection_select :author_id, Author.all, :id, :name %>
+
+	</p>
+
+	<p>
+		<%= f.label :PublisherName %>
+		<%= f.collection_select :publisher_id, Publisher.all, :id, :name %>
+	</p>
+
+	<p>
+		<%= f.submit :Submit %>
+	</p>
+
+<% end %>
+
+
+
+    

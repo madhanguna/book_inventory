@@ -1,0 +1,35 @@
+
+<h2> Welcome to Ecommerce Site </h2>
+
+<%= link_to "View Cart", carts_path %>
+<%= link_to "View Orders", orders_path %>
+<br><br><br>
+
+<table border=1>
+  <tr>
+    <th>Title</th>
+    <th>Price</th>
+    <th>Availability</th>
+    <th>ISBN</th>
+    <th>AuthorName</th>
+    <th>PublisherName</th>
+
+  </tr>
+ 
+
+
+  <% @ecom.each do |b| %>
+    <tr>
+        <td><%= b.title %></td>
+        <td><%= b.price %></td>
+        <td><%= b.available %></td>
+        <td><%= b.isbn %></td>
+        <td><%= b.author.name %></td>
+        <td><%= b.publisher.name %></td>
+       <td> <%= link_to 'Add to Carts', carts_add_cart_path(b.id) %></td>
+        
+         
+    </tr>
+  <% end %>
+
+</table>

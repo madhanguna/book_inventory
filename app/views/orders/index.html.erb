@@ -1,0 +1,26 @@
+<h1> Your Orders </h1>
+<table border=1>
+
+  <tr>
+    <th>Title</th>    
+    <th>ISBN</th>    
+    <th>Quantity</th>
+    <th>Total Price</th>
+ </tr>
+   
+   
+<% @order.each do |c| %>    
+
+    <tr>
+          
+        <td><%=  c.title %></td>        
+        <td><%= c.isbn %></td>        
+        <td><%= c.quantity %></td>
+        <td><%= c.price %></td>                            
+         
+    </tr>
+    <% end %>    
+</table>
+
+
+<%= link_to "List of Books",root_url %>

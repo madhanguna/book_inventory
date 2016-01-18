@@ -1,0 +1,58 @@
+
+
+
+
+<h4>1.<%= link_to 'Register Authors', new_author_path %><br/></h4>
+
+
+<h4>2.<%= link_to 'Register Publishers', new_publisher_path %><br/></h4>
+
+
+<h4>3.<%= link_to 'Register Books', new_book_path %></h4>
+
+
+ 
+<h2>Book Inventory</h2>
+
+<%= form_for :book ,:method => 'get' do  %>
+  <p>
+  
+    <%= text_field_tag :search, params[:search],placeholder: [:Title ,:or,:Price,:or ,:Isbn] %>
+    <%= submit_tag "Search" %>
+  </p>
+<% end %>
+ 
+<table border=1>
+  <tr>
+    <th>Title</th>
+    <th>Price</th>
+    <th>Availability</th>
+    <th>ISBN</th>
+    <th>AuthorName</th>
+    <th>PublisherName</th>
+
+  </tr>
+ 
+
+
+  <% @book.each do |b| %>
+    <tr>
+        <td><%= b.title %></td>
+        <td><%= b.price %></td>
+        <td><%= b.available %></td>
+        <td><%= b.isbn %></td>
+        <td><%= b.author.name %></td>
+        <td><%= b.publisher.name %></td>
+        <td><%= link_to 'Edit', edit_book_path(b) %></td>
+        <td><%= link_to 'Show', book_path(b) %></td>
+         <td><%= link_to 'Destroy', books_destroy_path(b),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+
+</table>
+
+
+<%= will_paginate @books %>
+

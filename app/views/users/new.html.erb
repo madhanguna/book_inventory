@@ -1,0 +1,36 @@
+<h1>User Registration </h1>
+
+<%= form_for @user do |f|  %>
+
+<% if @user.errors.any? %>
+  <div id="error">
+    <h2>
+      <%= pluralize(@user.errors.count, "error") %>User cannot sign up
+    </h2>
+    <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+
+<div class ="field">
+  <%= f.label :Email %><br/>
+  <%= f.text_field :email %>
+</div>
+
+<div class ="field">
+  <%= f.label :Password %><br/>
+  <%= f.password_field :password %>
+</div>
+
+<div class ="field">
+  <%= f.label :ConfirmPassword %><br/>
+  <%= f.password_field :confirm_password %>
+</div>
+
+<div class="actions"><%= f.submit  %>
+
+<% end %>
