@@ -1,0 +1,53 @@
+<h1> Your Cart </h1>
+
+
+<h4> 1.<%= link_to "View Orders",orders_index_path %><h4>
+
+<% total=0 %>
+<table border=1>
+
+  <tr>
+    <th>Title</th>
+    <th>Price</th>
+    <th>ISBN</th>
+    <th>AuthorName</th>
+    <th>PublisherName</th>
+    <th>Quantity</th>
+ </tr>
+   
+  
+
+
+<% @cart.each do |id,quantity| %>
+
+    <% book=Book.find_by_id(id) %>
+
+    <tr>
+          
+         <td><%=  book.title %></td>
+	      <td><%= number_to_currency(book.price, :unit=>'$') %></td>
+	      <td><%= book.isbn %></td>
+          <td><%= book.author.name %></td>
+          <td><%= book.publisher.name %></td>
+	     
+	      <td><%= quantity %></td>
+        <td><%= link_to "Remove from cart",destory_path(id) %></td>
+        
+        
+           
+          
+         
+    </tr>
+    <% total+=quantity*book.price %>
+    
+    <% end %>
+    <th>Total</th>
+    <td><b><%= number_to_currency(total, :unit=>'$')%></b></td>
+    
+</table>
+
+<br><br>
+<%= link_to "List of Books",root_url %>
+<td><%= link_to "Check Out!", orders_add_order_path%> </td>
+
+

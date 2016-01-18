@@ -1,0 +1,67 @@
+
+
+
+
+<h4>1.<%= link_to 'Register Authors', new_author_path %><br/></h4>
+
+
+<h4>2.<%= link_to 'Register Publishers', new_publisher_path %><br/></h4>
+
+
+<h4>3.<%= link_to 'Register Books', new_book_path %></h4>
+
+<h4>4.<%= link_to 'User Details ', users_path %></h4>
+
+<h4> 5.<%= link_to 'Go to Ecommerce Site',root_url%></h4>
+
+
+
+ 
+<h1>Listing Books</h1>
+
+<%= form_for :book ,:method => 'get' do  %>
+  <p>
+  
+    <%= text_field_tag :search, params[:search],placeholder: [:Title ,:or,:Price,:or ,:Isbn] %>
+    <%= submit_tag "Search" %>
+  </p>
+<% end %>
+ 
+<table border=1>
+  <tr>
+    <th>Image</th>
+    <th>Title</th>
+    <th>Price</th>
+    <th>Availability</th>
+    <th>ISBN</th>
+    <th>AuthorName</th>
+    <th>PublisherName</th>
+    <th>QuantityAvailable</th>
+
+  </tr>
+ 
+
+
+  <% @book.each do |b| %>
+    <tr>
+        <td><%= image_tag b.image_url(:thumb).to_s %></td>
+	      <td><%= b.title %></td>
+	      <td><%= b.price %></td>
+	      <td><%= translate( b.available.class) %></td>
+	      <td><%= b.isbn %></td>
+	      <td><%= b.author.name %></td>
+	      <td><%= b.publisher.name %></td>
+        <td><%= b.quantity %></td>
+        <td><%= link_to 'Edit', edit_book_path(b) %></td>
+        <td><%= link_to 'Show', book_path(b) %></td>
+         <td><%= link_to 'Destroy', book_path(b),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+
+</table>
+
+
+<%= will_paginate @books %>
+

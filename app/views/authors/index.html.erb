@@ -1,0 +1,23 @@
+<h4> 1.<%= link_to 'New Author', :controller => 'authors',:action=>'new' %></h4>
+
+
+
+<h1>Listing Authors</h1>
+ 
+<table border=1>
+  <tr>
+    <th>Name</th>
+  </tr>
+ 
+  <% @author.each do |a| %>
+    <tr>
+      <td><%= a.name %></td>
+       <td><%= link_to 'Edit', edit_author_path(a) %></td>
+       <td><%= link_to 'Show', author_path(a) %></td>
+      	<td><%= link_to 'Destroy', author_path(a),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</table>
+

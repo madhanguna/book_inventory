@@ -1,0 +1,41 @@
+
+<h1> Please Get Confirmed!!!</h1>
+
+<%= image_tag @book.image_url(:thumb).to_s %>
+  
+<p>
+  <strong>Title:</strong>
+  <%= @book.title %>
+</p>
+ 
+<p>
+  <strong>Price:</strong>
+  <%= @book.price %>
+</p>
+
+<p>
+  <strong>Availability:</strong>
+  <%= @book.available %>
+</p>
+ 
+<p>
+  <strong>Quantity Available:</strong>
+  <%= @book.quantity %>
+</p>
+
+<p>
+  <strong>ISBN:</strong>
+  <%= @book.isbn %>
+</p>
+
+<p>
+  <strong>Author:</strong>
+  <%= @book.author_id %>
+</p>
+ 
+<p>
+  <strong>Publisher:</strong>
+  <%= @book.publisher_id %>
+</p>
+
+ <%= link_to 'Go To List', :controller => "books",:action => "index" %>
